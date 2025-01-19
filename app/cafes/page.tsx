@@ -1,54 +1,54 @@
 "use client";
 
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
+
+import { useRouter } from "next/navigation";
 
 import Card from "@/components/layouts/Card";
 
-
 export interface Cafes {
-  _id : string,
-  name: string,
-  address: string,
-  description:string,
-  images: string[]
- }
-
+  _id: string;
+  name: string;
+  address: string;
+  description: string;
+  images: string[];
+}
 
 export default function Cafes() {
-
+  const router = useRouter();
 
   //カフェの一覧を取得する関数
   const fetchCafes = async () => {
     try {
-      const res = await fetch("/api/cafes/")
-      if(!res) {
+      const res = await fetch("/api/cafes/");
+      if (!res) {
         throw new Error("データの取得に失敗しました。");
       }
-      const cafes = await res.json()
-      return cafes
-      console.log(cafes)
-  
+      const cafes = await res.json();
+      return cafes;
     } catch (error) {
       console.error(error);
       return []; // エラー発生時は空配列を返す
     }
-  
-  }
+  };
 
-  const [ cafes, setCafes ] = useState<Cafes[]>([]);
+  const [cafes, setCafes] = useState<Cafes[]>([]);
 
   //初回表示時にカフェ一覧取得する
   useEffect(() => {
     fetchCafes().then((cafes) => {
       setCafes(cafes);
-      console.log(cafes)
-    })
-  },[])
-  
-  return (
-   <div>
+      console.log(cafes);
+    });
+  }, []);
 
-    <Card cafes={cafes}/>
-   </div>
+  const handleCafeDetails = (id: string): void => {
+    router.push(`/cafes/${id}`);
+  };
+
+  return (
+    <div>
+      <Card cafes={cafes} handleCafeDetails={handleCafeDetails} />
+    </div>
   );
 }

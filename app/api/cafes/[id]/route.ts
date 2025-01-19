@@ -1,17 +1,26 @@
 import Cafes from "@/app/models/Cafes";
 import dbConnect from "@/lib/dbConnect";
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 
-export async function GET() {
-    await dbConnect();
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  await dbConnect();
+  try {
+    const { id } = await params;
 
-    try {
-        const cafes = await Cafes.find({});
-        console.log(`${cafes}の取得に成功`);
-        
-        return NextResponse.json(cafes);   
-    } catch (err: any) {
-        return NextResponse.json({ error: err.message })
+    const cafe = await Cafes.findById(id);
+
+    console.log(`${cafe}の取得に成功`);
+    if (!cafe) {
+      return NextResponse.json(
+        { error: "カフェが見つかりません" },
+        { status: 404 }
+      );
     }
-
+    return NextResponse.json(cafe);
+  } catch (err: any) {
+    return NextResponse.json({ error: err.message }, { status: 500 });
+  }
 }
