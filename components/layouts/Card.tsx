@@ -8,10 +8,10 @@ type CardProps = {
 
 const Card: React.FC<CardProps> = ({ cafes, handleCafeDetails }) => {
   return (
-    <div className="bg-white py-2">
+    <div className="bg-white py-2 ">
       {cafes.map((cafe: Cafes) => (
         <div
-          className="max-w-sm w-full lg:max-w-full lg:flex mt-3 justify-center"
+          className="max-w-sm w-full lg:max-w-full lg:flex mt-3 justify-center mx-auto"
           key={cafe._id}
           onClick={() => {
             handleCafeDetails(cafe._id);

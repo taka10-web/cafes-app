@@ -5,16 +5,13 @@ import { Cafes } from "../page";
 import { useParams } from "next/navigation";
 
 const CefeDetails: React.FC = () => {
-  // const id = usePathname().replace("/cafes/", "");
   const { id } = useParams();
 
   const [cafe, setCafe] = useState<Cafes>();
 
   // カフェの詳細を取得する関数
-
   useEffect(() => {
-    const fetchCafe = async (id: string | null) => {
-      console.log(id);
+    const fetchCafe = async (id: string | string[] | undefined) => {
       try {
         const res = await fetch(`/api/cafes/${id}`);
         if (!res) {
