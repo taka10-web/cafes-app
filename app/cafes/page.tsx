@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import Card from "@/components/layouts/Card";
-import { Header } from "@/components/layouts/Header";
 
 export interface Cafes {
   _id: string;
@@ -53,7 +52,6 @@ export default function Cafes() {
 
   return (
     <div>
-      <Header />
       <Card cafes={cafes} handleCafeDetails={handleCafeDetails} />
     </div>
   );
