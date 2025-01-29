@@ -13,15 +13,17 @@ const Card: React.FC<CardProps> = ({ cafes, handleCafeDetails }) => {
         <div
           className="max-w-sm w-full lg:max-w-full lg:flex mt-3 justify-center mx-auto"
           key={cafe._id}
-          onClick={() => {
-            handleCafeDetails(cafe._id);
-          }}
         >
           <div
-            className="h-48 w-auto lg:h-auto lg:w-80 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden cursor-pointer cursor: pointer "
+            className="h-48  w-auto lg:h-auto lg:w-80 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden cursor-pointer cursor: pointer "
             style={{ backgroundImage: `url('${cafe.images}')` }}
           ></div>
-          <div className="auto border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal lg:w-3/5 cursor-pointer cursor: pointer transition hover:bg-zinc-100  duration-300 ">
+          <div
+            className="auto border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal lg:w-3/5 cursor-pointer cursor: pointer transition hover:bg-zinc-100  duration-300"
+            onClick={() => {
+              handleCafeDetails(cafe._id);
+            }}
+          >
             <div className="mb-8">
               <p className="text-sm text-gray-600 flex items-center">
                 Cafe Info

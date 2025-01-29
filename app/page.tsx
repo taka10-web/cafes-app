@@ -1,8 +1,8 @@
 export default function Home() {
-
   return (
-   <div>
-    <h1>ようこそCAFENG OUTへ！！</h1>
-   </div>
+    <div style={{ marginTop: 150 }}>
+      <h1>ようこそCAFENG OUTへ！！</h1>
+      <h1>ようこそCAFENG OUTへ！！</h1>
+    </div>
   );
 }

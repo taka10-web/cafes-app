@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Cafes } from "../page";
+import DetailCard from "../../../components/layouts/DetailCard";
 // import { usePathname } from "next/navigation";
 import { useParams } from "next/navigation";
 
@@ -29,11 +30,9 @@ const CefeDetails: React.FC = () => {
   }, []);
 
   return (
-    <div>
-      <div>{cafe?.name}</div>
-      <div>{cafe?.address}</div>
-      <div>{cafe?.description}</div>
-    </div>
+    <>
+      <DetailCard cafe={cafe} />
+    </>
   );
 };
 

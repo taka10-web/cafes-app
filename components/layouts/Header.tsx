@@ -72,28 +72,28 @@ export const Header = () => {
             </div>
           )}
         </div>
+        {open && (
+          <div className="bg-gray-50 lg:hidden w-full h-100 absolute top-[120px] shadow-md z-10">
+            <ul className="text-center">
+              <li className="p-4 border-y border-gray-300">
+                <a href={"/"}>ホーム</a>
+              </li>
+              <li className="p-4 border-b border-gray-300">
+                <a href={"/cafes"}>カフェ一覧</a>
+              </li>
+              <li className="p-4 border-b border-gray-300">
+                <a href={"/add"}>カフェを登録</a>
+              </li>
+            </ul>
+            <div className="p-4 text-center border-b border-gray-300">
+              <button>ログイン</button>
+            </div>
+            <div className="p-4 text-center border-b border-gray-300">
+              <button>登録</button>
+            </div>
+          </div>
+        )}
       </nav>
-      {open && (
-        <div className="bg-gray-50 lg:hidden w-full h-100 absolute shadow-md ">
-          <ul className="text-center">
-            <li className="p-4 border-y border-gray-300">
-              <a href={"/"}>ホーム</a>
-            </li>
-            <li className="p-4 border-b border-gray-300">
-              <a href={"/cafes"}>カフェ一覧</a>
-            </li>
-            <li className="p-4 border-b border-gray-300">
-              <a href={"/add"}>カフェを登録</a>
-            </li>
-          </ul>
-          <div className="p-4 text-center border-b border-gray-300">
-            <button>ログイン</button>
-          </div>
-          <div className="p-4 text-center border-b border-gray-300">
-            <button>登録</button>
-          </div>
-        </div>
-      )}
     </>
   );
 };
