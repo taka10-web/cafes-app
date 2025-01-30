@@ -31,14 +31,16 @@ const CefeDetails: React.FC = () => {
   }, []);
 
   return (
-    <div className="sm:flex w-full justify-center">
-      <DetailCard cafe={cafe} />
+    <>
       {cafe && (
-        <div className="shadow-md border rounded-2xl boder-gary-300 lg:w-1/3 sm:w-1/2 mx-5 my-8">
-          <GoogleMap cafe={cafe} />
+        <div className="sm:flex w-full justify-center">
+          <DetailCard cafe={cafe} />
+          <div className="shadow-md border rounded-2xl boder-gary-300 lg:w-1/3 sm:w-1/2 mx-5 my-8">
+            <GoogleMap cafeAdress={cafe?.address} />
+          </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

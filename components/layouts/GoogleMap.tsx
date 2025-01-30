@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useRef, useState } from "react";
 import { Loader } from "@googlemaps/js-api-loader";
-import { Cafes } from "@/app/cafes/page";
+// import { Cafes } from "@/app/cafes/page";
 
 const mapStyle = {
   width: "100%",
@@ -9,10 +9,10 @@ const mapStyle = {
 };
 
 type MapProps = {
-  cafe: Cafes;
+  cafeAdress: string | undefined;
 };
 
-export const GoogleMap: React.FC<MapProps> = ({ cafe }) => {
+export const GoogleMap: React.FC<MapProps> = ({ cafeAdress }) => {
   //中心となる緯度経度
   // const position = { lat: 35.710063, lng: 139.8107 };
   const [position, setPosition] = useState({ lat: 35.710063, lng: 139.8107 });
@@ -45,10 +45,8 @@ export const GoogleMap: React.FC<MapProps> = ({ cafe }) => {
 
   useEffect(() => {
     (async () => {
-      const address = cafe?.address;
-
-      console.log(cafe);
-
+      //住所を取得
+      const address = cafeAdress;
       //Geocoderを使用可能にする
       const { Geocoder } = await loader.importLibrary("geocoding");
       const geocoder = new Geocoder();
