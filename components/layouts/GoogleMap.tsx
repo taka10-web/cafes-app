@@ -1,10 +1,21 @@
 import React from "react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Loader } from "@googlemaps/js-api-loader";
+import { Cafes } from "@/app/cafes/page";
 
-export const GoogleMap = () => {
+const mapStyle = {
+  width: "100%",
+  height: "46vh",
+};
+
+type MapProps = {
+  cafe: Cafes;
+};
+
+export const GoogleMap: React.FC<MapProps> = ({ cafe }) => {
   //中心となる緯度経度
-  const position = { lat: 35.710063, lng: 139.8107 };
+  // const position = { lat: 35.710063, lng: 139.8107 };
+  const [position, setPosition] = useState({ lat: 35.710063, lng: 139.8107 });
   const mapRef = useRef<HTMLDivElement>(null);
 
   //Loaderの初期化
@@ -15,7 +26,6 @@ export const GoogleMap = () => {
 
   // 初回レンダリング時に使用するライブラリを非同期でロード
   useEffect(() => {
-    console.log(process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY);
     (async () => {
       const [{ Map }, { AdvancedMarkerElement }] = await Promise.all([
         loader.importLibrary("maps"),
@@ -24,13 +34,39 @@ export const GoogleMap = () => {
       // 地図の描画
       const map = new Map(mapRef.current!, {
         center: position,
-        zoom: 10,
+        zoom: 15,
         mapId: "DEMO_MAP_ID",
       });
       // マーカーの描画
       new AdvancedMarkerElement({ map, position, title: "" });
+      //住所を取得
+    })();
+  }, [position]);
+
+  useEffect(() => {
+    (async () => {
+      const address = cafe?.address;
+
+      console.log(cafe);
+
+      //Geocoderを使用可能にする
+      const { Geocoder } = await loader.importLibrary("geocoding");
+      const geocoder = new Geocoder();
+      geocoder.geocode({ address }, (results, status) => {
+        if (results) {
+          const { lat, lng } = results[0].geometry.location;
+          if (status === "OK") {
+            setPosition({ lat: lat(), lng: lng() });
+            console.log("OK");
+          }
+        }
+      });
     })();
   }, []);
 
-  return <div ref={mapRef} style={{ height: 300, width: 300 }}></div>;
+  return (
+    <>
+      <div ref={mapRef} style={mapStyle} className="rounded-t-2xl"></div>
+    </>
+  );
 };

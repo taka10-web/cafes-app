@@ -1,6 +1,4 @@
-import React from "react";
 import { Cafes } from "@/app/cafes/page";
-import { GoogleMap } from "./GoogleMap";
 
 type CardProps = {
   cafe: Cafes | undefined;
@@ -9,10 +7,7 @@ type CardProps = {
 const DetailCard: React.FC<CardProps> = ({ cafe }) => {
   return (
     <>
-      <div
-        className="shadow-md border rounded-2xl boder-gary-300 lg:w-1/3 sm:w-1/2 sm:mx-auto mb-8 mx-5"
-        style={{ marginTop: 150 }}
-      >
+      <div className="shadow-md border rounded-2xl boder-gary-300 lg:w-1/3 sm:w-1/2 mx-5 my-8">
         <div>
           <img
             src={cafe?.images[0]}
@@ -28,26 +23,23 @@ const DetailCard: React.FC<CardProps> = ({ cafe }) => {
             <span className="text-gray-600 text-md ml-2">住所 : </span>
             {cafe?.address}
           </li>
-          <li className="py-8 border-y border-gray-300">
+          <li className="py-8 border-b border-gray-300">
             <span className="text-gray-600 text-md ml-2">電話番号 : </span>
             {cafe?.phone_number}
           </li>
-          <li className="py-8 border-y border-gray-300">
+          <li className="py-8 border-b border-gray-300">
             <span className="text-gray-600 text-md ml-2">アクセス: </span>
             {cafe?.access}
           </li>
-          <li className="py-8 border-y border-gray-300">
+          <li className="py-8 border-b border-gray-300">
             <span className="text-gray-600 text-md ml-2">営業時間 : </span>
             {cafe?.business_hours}
           </li>
-          <li className="py-8 border-y border-gray-300">
+          <li className="py-8">
             <span className="text-gray-600 text-md ml-2">定休日 : </span>
             {cafe?.regular_holiday}
           </li>
         </ul>
-      </div>
-      <div>
-        <GoogleMap />
       </div>
     </>
   );

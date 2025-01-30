@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Cafes } from "../page";
 import DetailCard from "../../../components/layouts/DetailCard";
-// import { usePathname } from "next/navigation";
+import { GoogleMap } from "@/components/layouts/GoogleMap";
 import { useParams } from "next/navigation";
 
 const CefeDetails: React.FC = () => {
@@ -19,20 +19,26 @@ const CefeDetails: React.FC = () => {
           throw new Error("データの取得に失敗しました。");
         }
         const cafe = await res.json();
-        setCafe(cafe);
+        if (cafe && cafe?.address) {
+          setCafe(cafe);
+        }
       } catch (error) {
         console.error(error);
         return null;
       }
     };
-    console.log(id);
     fetchCafe(id);
   }, []);
 
   return (
-    <>
+    <div className="sm:flex w-full justify-center">
       <DetailCard cafe={cafe} />
-    </>
+      {cafe && (
+        <div className="shadow-md border rounded-2xl boder-gary-300 lg:w-1/3 sm:w-1/2 mx-5 my-8">
+          <GoogleMap cafe={cafe} />
+        </div>
+      )}
+    </div>
   );
 };
 

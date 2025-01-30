@@ -16,7 +16,7 @@ export const Header = () => {
 
   return (
     <>
-      <nav className="w-full flex fixed top-0 shadow-md">
+      <nav className="w-full flex fixed top-0 shadow-md z-10">
         <div className="flex sm:flex-1 justify-between w-full bg-gray-50">
           <div className="md:mx-10">
             <Link href={"/"}>
