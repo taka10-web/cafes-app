@@ -10,7 +10,8 @@ export async function GET(
   try {
     const { id } = await params;
 
-    const cafe = await Cafes.findById(id);
+    const cafe = await Cafes.findById(id).populate("reviews");
+    console.log(cafe);
 
     console.log(`${cafe}の取得に成功`);
     if (!cafe) {
