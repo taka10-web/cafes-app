@@ -40,11 +40,15 @@ export const Header = () => {
                   <a href={"/add"}>カフェを登録</a>
                 </li>
               </ul>
-              <div className="p-4 ml-10 bg-blue-100">
-                <button>ログイン</button>
+              <div className="ml-10">
+                <button className="p-3 bg-zinc-900 shadow-md rounded-md text-white">
+                  ログイン
+                </button>
               </div>
-              <div className="p-4 ml-10 bg-blue-100">
-                <button>登録</button>
+              <div className="ml-10">
+                <button className="py-3 px-5 bg-zinc-600 shadow-md rounded-md text-white">
+                  登録
+                </button>
               </div>
             </div>
           </div>
