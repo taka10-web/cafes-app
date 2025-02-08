@@ -1,10 +1,12 @@
 import { Cafes } from "@/app/cafes/page";
+import Rating from "@mui/material/Rating";
 
 type CardProps = {
   cafe: Cafes | undefined;
+  average: number;
 };
 
-const DetailCard: React.FC<CardProps> = ({ cafe }) => {
+const DetailCard: React.FC<CardProps> = ({ cafe, average }) => {
   return (
     <>
       <div className="shadow-md border rounded-2xl boder-gary-300 lg:w-1/3 sm:w-1/2 mx-5 my-8">
@@ -16,7 +18,7 @@ const DetailCard: React.FC<CardProps> = ({ cafe }) => {
           />
         </div>
         <h2 className="text-lg font-bold ml-3 mt-3">{cafe?.name}</h2>
-        <div className="text-lg text-yellow-600 ml-3 mt-3">★★★☆☆</div>
+        <Rating className="ml-3" value={average} precision={0.5} readOnly />
         <p className="ml-3 mt-3">{cafe?.description}</p>
         <ul className="mt-5">
           <li className="py-8 border-y border-gray-300">
