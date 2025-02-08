@@ -1,14 +1,18 @@
 import { Controller, useForm, SubmitHandler } from "react-hook-form";
 import Rating from "@mui/material/Rating";
-import { useRouter, useParams } from "next/navigation";
+import { useParams } from "next/navigation";
+import React from "react";
 
 interface Review {
   rating: number;
   comment: string;
 }
 
-export const ReviewForm = () => {
-  const router = useRouter();
+type ReviewFormProps = {
+  fetchCafe: (id: string | string[] | undefined) => void;
+};
+
+export const ReviewForm: React.FC<ReviewFormProps> = ({ fetchCafe }) => {
   const { id } = useParams();
 
   const defaultValues: Review = {
@@ -44,7 +48,7 @@ export const ReviewForm = () => {
       return null;
     }
     reset();
-    router.replace(`/cafes/${id}/`);
+    fetchCafe(id);
   };
 
   return (

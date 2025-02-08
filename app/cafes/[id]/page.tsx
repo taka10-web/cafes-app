@@ -19,22 +19,23 @@ const CefeDetails: React.FC = () => {
   const [cafe, setCafe] = useState<Cafes>();
 
   // カフェの詳細を取得する関数
-  useEffect(() => {
-    const fetchCafe = async (id: string | string[] | undefined) => {
-      try {
-        const res = await fetch(`/api/cafes/${id}`);
-        if (!res) {
-          throw new Error("データの取得に失敗しました。");
-        }
-        const cafe = await res.json();
-        if (cafe && cafe?.address) {
-          setCafe(cafe);
-        }
-      } catch (error) {
-        console.error(error);
-        return null;
+  const fetchCafe = async (id: string | string[] | undefined) => {
+    try {
+      const res = await fetch(`/api/cafes/${id}`);
+      if (!res) {
+        throw new Error("データの取得に失敗しました。");
       }
-    };
+      const cafe = await res.json();
+      if (cafe && cafe?.address) {
+        setCafe(cafe);
+      }
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  };
+
+  useEffect(() => {
     fetchCafe(id);
   }, []);
 
@@ -46,7 +47,7 @@ const CefeDetails: React.FC = () => {
           <div className="shadow-md border rounded-2xl boder-gary-300 lg:w-1/3 sm:w-1/2 mx-5 my-8">
             <GoogleMap cafeAdress={cafe?.address} />
             <Review reviews={cafe?.reviews} />
-            <ReviewForm />
+            <ReviewForm fetchCafe={fetchCafe} />
           </div>
         </div>
       )}
