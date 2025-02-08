@@ -1,6 +1,6 @@
 import { Controller, useForm, SubmitHandler } from "react-hook-form";
 import Rating from "@mui/material/Rating";
-import { redirect, useParams } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 
 interface Review {
   rating: number;
@@ -8,6 +8,7 @@ interface Review {
 }
 
 export const ReviewForm = () => {
+  const router = useRouter();
   const { id } = useParams();
 
   const defaultValues: Review = {
@@ -35,13 +36,15 @@ export const ReviewForm = () => {
         },
         body: JSON.stringify(formdata),
       });
+      if (res.ok) {
+      }
       console.log(res);
     } catch (err) {
       console.error(err);
       return null;
     }
     reset();
-    redirect(`/cafes/${id}/`);
+    router.replace(`/cafes/${id}/`);
   };
 
   return (

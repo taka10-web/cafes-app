@@ -2,9 +2,16 @@
 import React, { useEffect, useState } from "react";
 import { Cafes } from "../page";
 import DetailCard from "../../../components/layouts/DetailCard";
+import { Review } from "@/components/layouts/Review";
 import { GoogleMap } from "@/components/layouts/GoogleMap";
 import ReviewForm from "@/components/layouts/ReviewForm";
 import { useParams } from "next/navigation";
+
+type Review = {
+  _id: string;
+  rating: number;
+  comment: string;
+};
 
 const CefeDetails: React.FC = () => {
   const { id } = useParams();
@@ -38,6 +45,7 @@ const CefeDetails: React.FC = () => {
           <DetailCard cafe={cafe} />
           <div className="shadow-md border rounded-2xl boder-gary-300 lg:w-1/3 sm:w-1/2 mx-5 my-8">
             <GoogleMap cafeAdress={cafe?.address} />
+            <Review reviews={cafe?.reviews} />
             <ReviewForm />
           </div>
         </div>
