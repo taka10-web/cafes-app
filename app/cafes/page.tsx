@@ -16,6 +16,7 @@ export interface Cafes {
   business_hours: string;
   access: string;
   regular_holiday: string;
+  reviews: [];
 }
 
 export default function Cafes() {

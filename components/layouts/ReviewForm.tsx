@@ -1,13 +1,18 @@
 import { Controller, useForm, SubmitHandler } from "react-hook-form";
 import Rating from "@mui/material/Rating";
-import { redirect, useParams } from "next/navigation";
+import { useParams } from "next/navigation";
+import React from "react";
 
 interface Review {
   rating: number;
   comment: string;
 }
 
-export const ReviewForm = () => {
+type ReviewFormProps = {
+  fetchCafe: (id: string | string[] | undefined) => void;
+};
+
+export const ReviewForm: React.FC<ReviewFormProps> = ({ fetchCafe }) => {
   const { id } = useParams();
 
   const defaultValues: Review = {
@@ -35,18 +40,20 @@ export const ReviewForm = () => {
         },
         body: JSON.stringify(formdata),
       });
+      if (res.ok) {
+      }
       console.log(res);
     } catch (err) {
       console.error(err);
       return null;
     }
     reset();
-    redirect(`/cafes/${id}/`);
+    fetchCafe(id);
   };
 
   return (
     <>
-      <div className="bg-gray-100">
+      <div className="border w-[95%] rounded-lg py-3 mx-auto mb-3">
         <form onSubmit={handleSubmit(onSubmit)}>
           <Controller
             name="rating"
@@ -59,12 +66,15 @@ export const ReviewForm = () => {
                 value={field.value ?? 3}
                 precision={0.5}
                 onChange={(_, newValue) => field.onChange(newValue)}
+                className="ml-3"
               />
             )}
           />
-          <p>コメント</p>
+          <label className="block mb-2 ml-4 text-md font-medium text-gray-900">
+            口コミを投稿する
+          </label>
           <textarea
-            className="border border-gary-300 w-80 mx-2 "
+            className="block p-2.5 h-[180px] w-[95%] mx-auto text-sm text-gray-900 rounded-lg  focus:border-blue-500 focus:ring-2 focus:ring-blue-500 border border-gray-300"
             id="comment"
             {...register("comment", {
               maxLength: {
@@ -79,7 +89,7 @@ export const ReviewForm = () => {
           <div>
             <button
               type="submit"
-              className="shadow-md rounded-md  m-3 p-2 bg-green-600 text-white"
+              className="shadow-md rounded-md  m-4 p-2 bg-green-600 text-white"
             >
               投稿する
             </button>
