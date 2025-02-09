@@ -40,4 +40,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+#Google Cloud
 beaming-octagon-449214-q6-877494cd661b.json
