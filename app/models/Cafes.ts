@@ -9,6 +9,7 @@ export interface ICafes extends Document {
   business_hours: string;
   access: string;
   regular_holiday: string;
+  review: [];
 }
 
 const cafesSchema: Schema = new mongoose.Schema({
@@ -37,6 +38,12 @@ const cafesSchema: Schema = new mongoose.Schema({
   regular_holiday: {
     type: String,
   },
+  reviews: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Review",
+    },
+  ],
 });
 
 const Cafes =

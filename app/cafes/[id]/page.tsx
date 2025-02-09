@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Cafes } from "../page";
 import DetailCard from "../../../components/layouts/DetailCard";
 import { GoogleMap } from "@/components/layouts/GoogleMap";
+import ReviewForm from "@/components/layouts/ReviewForm";
 import { useParams } from "next/navigation";
 
 const CefeDetails: React.FC = () => {
@@ -37,6 +38,7 @@ const CefeDetails: React.FC = () => {
           <DetailCard cafe={cafe} />
           <div className="shadow-md border rounded-2xl boder-gary-300 lg:w-1/3 sm:w-1/2 mx-5 my-8">
             <GoogleMap cafeAdress={cafe?.address} />
+            <ReviewForm />
           </div>
         </div>
       )}
