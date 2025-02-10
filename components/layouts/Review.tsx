@@ -33,7 +33,7 @@ export const Review: React.FC<ReviewProps> = ({ reviews }) => {
               readOnly
               className="pl-2"
             />
-            <div className="p-3">{review.comment}</div>
+            <div className="p-2">{review.comment}</div>
           </div>
         ))}
       </div>
