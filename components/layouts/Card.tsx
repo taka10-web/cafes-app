@@ -16,7 +16,7 @@ const Card: React.FC<CardProps> = ({ cafes, handleCafeDetails }) => {
         >
           <div
             className="h-48  w-auto lg:h-auto lg:w-80 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden cursor-pointer cursor: pointer "
-            style={{ backgroundImage: `url('${cafe.images}')` }}
+            style={{ backgroundImage: `url('${cafe.images[0]}')` }}
           ></div>
           <div
             className="auto border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal lg:w-3/5 cursor-pointer cursor: pointer transition hover:bg-zinc-100  duration-300"
